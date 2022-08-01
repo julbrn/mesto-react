@@ -1,3 +1,7 @@
+/**Переменные для авторизации на сервере*/
+export const token = '1133b8bd-97d0-4ecb-ab73-7c32b64892f8';
+export const server = 'https://mesto.nomoreparties.co/v1/cohort-45';
+
 /*export const validationConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -20,10 +24,6 @@
 /**Переменные для попапа подтверждения удаления*/
 //export const deleteCardPopup = document.querySelector(".popup_type_deletion-confirmation");
 //export const deleteCardButton = deleteCardPopup.querySelector(".card__delete-button");
-
-/**Переменные для авторизации на сервере*/
-export const token = '1133b8bd-97d0-4ecb-ab73-7c32b64892f8';
-export const server = 'https://mesto.nomoreparties.co/v1/cohort-45';
 
 /**Переменные для редактирования аватара*/
 //export const avatarPopup = document.querySelector(".popup_type_edit-avatar");

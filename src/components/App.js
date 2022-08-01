@@ -1,18 +1,17 @@
 import React from 'react';
-import logo from '../images/header/logo.svg';
-import '../App.css';
+import '../index.css';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
-import Card from "./Card";
 import Input from "./Input";
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false)
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false)
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
+  const [selectedCard, setSelectedCard] = React.useState(null)
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);}
 
@@ -28,6 +27,11 @@ function App() {
       setEditProfilePopupOpen(false);
       setAddPlacePopupOpen(false);
       setEditAvatarPopupOpen(false);
+      setSelectedCard(null);
+    }
+
+    function handleCardClick(card) {
+        setSelectedCard(card);
     }
 
     return (
@@ -37,6 +41,7 @@ function App() {
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
               onEditAvatar={handleEditAvatarClick}
+              onCardClick={handleCardClick}
           />
           <Footer/>
           <PopupWithForm
@@ -83,9 +88,6 @@ function App() {
                   id="placeUrl-input"
               />
           </PopupWithForm>
-
-          <ImagePopup
-              onClose={closeAllPopups}/>
           <PopupWithForm
               name='edit-avatar'
               title='Обновить аватар'
@@ -104,6 +106,10 @@ function App() {
               title='Вы уверены?'
               buttonText='Да'>
           </PopupWithForm>
+          <ImagePopup
+              card={selectedCard}
+              onClose={closeAllPopups}>
+          </ImagePopup>
         </div>
     );
   }

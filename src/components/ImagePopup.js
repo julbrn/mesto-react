@@ -1,14 +1,14 @@
 import React from 'react';
 
-function ImagePopup(props) {
+function ImagePopup({card, onClose}) {
     return (
-        <div className="popup popup_type_zoom-image">
+        <div className={`popup popup_type_zoom-image ${card && "popup_opened"}`}>
             <div className="popup__figure-container">
-                <button onClick={props.onClose} type="button" aria-label="Close"
+                <button onClick={onClose} type="button" aria-label="Close"
                  className="popup__close"></button>
                 <figure className="popup__figure">
-                    <img src="src/components/App#" className="popup__image" alt="#"/>
-                    <figcaption className="popup__caption"></figcaption>
+                    <img src={card && card.link} className="popup__image" alt={card && card.name}/>
+                    <figcaption className="popup__caption">{card && card.name}</figcaption>
                 </figure>
             </div>
         </div>
