@@ -1,6 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import api from '../utils/api.js';
+import Card from "./Card";
 
 function Main(props) {
+    const [userName, setUserName] = React.useState('')
+    const [userDescription, setUserDescription] = React.useState('')
+    const [userAvatar, setUserAvatar] = React.useState('')
+    const [cards, setCards] = React.useState([]);
+    useEffect(() => {
+        Promise.all([api.downloadUserInfo(), api.downloadInitialCards()])
+            .then(([me, card]) => {
+                setUserName(me.name)
+                setUserDescription(me.about);
+                setUserAvatar(me.avatar);
+                setCards(card);
+            })
+            .catch((err) => console.log(err))
+    }, [])
+
     return (
         <main className="content">
             <section className="profile">
@@ -9,12 +26,12 @@ function Main(props) {
                             type="button"></button>
                     <img
                         className="profile__avatar"
-                        src="https://images.unsplash.com/photo-1580560400778-5d9fafd7fe18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                        src={userAvatar}
                         alt="Аватар"
                     />
                 </div>
-                <h1 className="profile__title"></h1>
-                <p className="profile__subtitle"></p>
+                <h1 className="profile__title">{userName}</h1>
+                <p className="profile__subtitle">{userDescription}</p>
                 <button
                     className="profile__edit-button"
                     onClick={props.onEditProfile}
@@ -29,7 +46,17 @@ function Main(props) {
                 ></button>
             </section>
             <section className="elements">
-                <ul className="elements__cards"></ul>
+                <ul className="elements__cards">
+                        {cards.map((card) => (
+                                <Card
+                                    card = {card}
+                                    name = {card.name}
+                                    link = {card.link}
+                                    likes = {card.likes.length}
+                                    key = {card._id}
+                                />
+                            ))}
+                </ul>
             </section>
         </main>
     );

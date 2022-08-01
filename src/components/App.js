@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import Card from "./Card";
+import Input from "./Input";
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false)
@@ -44,30 +45,22 @@ function App() {
               buttonText='Сохранить'
               onClose={closeAllPopups}
               isOpen={isEditProfilePopupOpen}>
-            <input
-                type="text"
-                name="profileName"
-                id="profileName-input"
-                className="popup__input popup__input_type_name"
-                placeholder="Имя"
-                autoComplete="off"
-                minLength="2"
-                maxLength="40"
-                required
-            />
-            <span className="popup__input-error profileName-input-error"></span>
-            <input
-                type="text"
-                name="profileInfo"
-                id="profileInfo-input"
-                className="popup__input popup__input_type_info"
-                placeholder="О себе"
-                autoComplete="off"
-                minLength="2"
-                maxLength="200"
-                required
-            />
-            <span className="popup__input-error profileInfo-input-error"></span>
+              <Input
+                  type="text"
+                  placeholder="Имя"
+                  minLength="2"
+                  maxLength="40"
+                  name="profileName"
+                  id="profileName-input"
+              />
+              <Input
+                  type="text"
+                  placeholder="О себе"
+                  minLength="2"
+                  maxLength="200"
+                  name="profileInfo"
+                  id="profileInfo-input"
+              />
           </PopupWithForm>
           <PopupWithForm
               name='add-card'
@@ -75,28 +68,20 @@ function App() {
               buttonText='Создать'
               onClose={closeAllPopups}
               isOpen={isAddPlacePopupOpen}>
-            <input
-                name="name"
-                type="text"
-                className="popup__input popup__input_type_name"
-                id="placeName-input"
-                placeholder="Название"
-                autoComplete="off"
-                minLength="2"
-                maxLength="30"
-                required
-            />
-            <span className="popup__input-error placeName-input-error"></span>
-            <input
-                name="link"
-                type="url"
-                className="popup__input popup__input_type_url"
-                id="placeUrl-input"
-                placeholder="Ссылка на картинку"
-                autoComplete="off"
-                required
-            />
-            <span className="popup__input-error placeUrl-input-error"></span>
+              <Input
+                  type="text"
+                  placeholder="Название"
+                  minLength="2"
+                  maxLength="30"
+                  name="name"
+                  id="placeName-input"
+              />
+              <Input
+                  type="url"
+                  placeholder="Ссылка на картинку"
+                  name="link"
+                  id="placeUrl-input"
+              />
           </PopupWithForm>
 
           <ImagePopup
@@ -107,23 +92,18 @@ function App() {
               buttonText='Сохранить'
               onClose = {closeAllPopups}
               isOpen={isEditAvatarPopupOpen}>
-            <input
-                name="avatarLink"
-                type="url"
-                className="popup__input popup__input_type_url popup__input_type_avatarUrl"
-                id="avatarUrl-input"
-                placeholder="Ссылка на аватар"
-                autoComplete="off"
-                required
-            />
-            <span className="popup__input-error avatarUrl-input-error"></span>
+              <Input
+                  type="url"
+                  placeholder="Ссылка на аватар"
+                  name="avatarLink"
+                  id="avatarUrl-input"
+              />
           </PopupWithForm>
           <PopupWithForm
               name='deletion-confirmation'
               title='Вы уверены?'
               buttonText='Да'>
           </PopupWithForm>
-          <Card/>
         </div>
     );
   }

@@ -1,10 +1,9 @@
 import React from 'react';
 
 function PopupWithForm(props) {
-    console.log(props.children);
     return (
         <div className={`popup popup_type_${props.name} ${props.isOpen && 'popup_opened'}`}>
-            <div className="popup__container popup__overlay">
+            <div className={`popup__container popup__overlay popup__container_type_${props.name}`}>
                 <button onClick={props.onClose} type="button" aria-label="Close"
                  className="popup__close"></button>
                 <form className="popup__form" name={`${props.name}-form`} noValidate>
