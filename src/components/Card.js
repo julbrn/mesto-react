@@ -14,10 +14,10 @@ function Card({card, name, link, likes, onCardClick}) {
                             type="button"
                             className="card__like-button"
                             aria-label="like"
-                        ></button>
+                        />
                         <p className="card__like-counter">{likes}</p>
                     </div>
-                    <button className="card__delete-button" aria-label="delete"></button>
+                    <button className="card__delete-button" aria-label="delete"/>
                 </div>
             </li>
     );

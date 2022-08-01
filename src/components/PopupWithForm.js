@@ -5,7 +5,7 @@ function PopupWithForm(props) {
         <div className={`popup popup_type_${props.name} ${props.isOpen && 'popup_opened'}`}>
             <div className={`popup__container popup__overlay popup__container_type_${props.name}`}>
                 <button onClick={props.onClose} type="button" aria-label="Close"
-                 className="popup__close"></button>
+                 className="popup__close"/>
                 <form className="popup__form" name={`${props.name}-form`} noValidate>
                     <fieldset className="popup__fieldset">
                         <legend className="popup__title">{props.title}</legend>

@@ -23,7 +23,7 @@ function Main(props) {
             <section className="profile">
                 <div className="profile__avatar-container">
                     <button onClick={props.onEditAvatar} className="profile__edit-avatar-button" aria-label="Редактировать аватар"
-                            type="button"></button>
+                            type="button"/>
                     <img
                         className="profile__avatar"
                         src={userAvatar}
@@ -37,13 +37,13 @@ function Main(props) {
                     onClick={props.onEditProfile}
                     aria-label="Редактировать информацию профиля"
                     type="button"
-                ></button>
+                />
                 <button
                     className="profile__add-button"
                     onClick={props.onAddPlace}
                     aria-label="Add"
                     type="button"
-                ></button>
+                />
             </section>
             <section className="elements">
                 <ul className="elements__cards">
