@@ -13,104 +13,97 @@ function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
   const [selectedCard, setSelectedCard] = React.useState(null)
   function handleEditAvatarClick() {
-    setEditAvatarPopupOpen(true);}
+    setEditAvatarPopupOpen(true);
+  }
 
-    function handleEditProfileClick() {
-      setEditProfilePopupOpen(true);
-    }
+  function handleEscapeClose(event) {
+      if (event.key === 'Escape') {
+          closeAllPopups()
+      }
+  }
 
-    function handleAddPlaceClick() {
-      setAddPlacePopupOpen(true);
-    }
-
-    function closeAllPopups() {
-      setEditProfilePopupOpen(false);
-      setAddPlacePopupOpen(false);
-      setEditAvatarPopupOpen(false);
-      setSelectedCard(null);
-    }
-
-    function handleCardClick(card) {
-        setSelectedCard(card);
-    }
-
-    return (
-        <div className="page">
-          <Header/>
-          <Main
-              onEditProfile={handleEditProfileClick}
-              onAddPlace={handleAddPlaceClick}
-              onEditAvatar={handleEditAvatarClick}
-              onCardClick={handleCardClick}
+  function handleEditProfileClick() {setEditProfilePopupOpen(true);
+      document.addEventListener('keydown', handleEscapeClose)
+  }
+  function handleAddPlaceClick() {setAddPlacePopupOpen(true);
+      document.addEventListener('keydown', handleEscapeClose)
+  }
+  function closeAllPopups() {setEditProfilePopupOpen(false);setAddPlacePopupOpen(false);setEditAvatarPopupOpen(false);setSelectedCard(null);
+      document.removeEventListener('keydown', handleEscapeClose)
+  }
+  function handleCardClick(card) {
+      setSelectedCard(card);
+      document.addEventListener('keydown', handleEscapeClose)
+  }
+  return (
+      <div className="page"><Header/><Main
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          onEditAvatar={handleEditAvatarClick}
+          onCardClick={handleCardClick}
+      /><Footer/><PopupWithForm
+          name='edit-profile'
+          title='Редактировать профиль'
+          buttonText='Сохранить'
+          onClose={closeAllPopups}
+          isOpen={isEditProfilePopupOpen}>
+          <Input
+              type="text"
+              placeholder="Имя"
+              minLength="2"
+              maxLength="40"
+              name="profileName"
+              id="profileName-input"
           />
-          <Footer/>
-          <PopupWithForm
-              name='edit-profile'
-              title='Редактировать профиль'
-              buttonText='Сохранить'
-              onClose={closeAllPopups}
-              isOpen={isEditProfilePopupOpen}>
-              <Input
-                  type="text"
-                  placeholder="Имя"
-                  minLength="2"
-                  maxLength="40"
-                  name="profileName"
-                  id="profileName-input"
-              />
-              <Input
-                  type="text"
-                  placeholder="О себе"
-                  minLength="2"
-                  maxLength="200"
-                  name="profileInfo"
-                  id="profileInfo-input"
-              />
-          </PopupWithForm>
-          <PopupWithForm
-              name='add-card'
-              title='Новое место'
-              buttonText='Создать'
-              onClose={closeAllPopups}
-              isOpen={isAddPlacePopupOpen}>
-              <Input
-                  type="text"
-                  placeholder="Название"
-                  minLength="2"
-                  maxLength="30"
-                  name="name"
-                  id="placeName-input"
-              />
-              <Input
-                  type="url"
-                  placeholder="Ссылка на картинку"
-                  name="link"
-                  id="placeUrl-input"
-              />
-          </PopupWithForm>
-          <PopupWithForm
-              name='edit-avatar'
-              title='Обновить аватар'
-              buttonText='Сохранить'
-              onClose = {closeAllPopups}
-              isOpen={isEditAvatarPopupOpen}>
-              <Input
-                  type="url"
-                  placeholder="Ссылка на аватар"
-                  name="avatarLink"
-                  id="avatarUrl-input"
-              />
-          </PopupWithForm>
-          <PopupWithForm
-              name='deletion-confirmation'
-              title='Вы уверены?'
-              buttonText='Да'>
-          </PopupWithForm>
-          <ImagePopup
-              card={selectedCard}
-              onClose={closeAllPopups}>
-          </ImagePopup>
-        </div>
+          <Input
+              type="text"
+              placeholder="О себе"
+              minLength="2"
+              maxLength="200"
+              name="profileInfo"
+              id="profileInfo-input"
+          />
+      </PopupWithForm><PopupWithForm
+          name='add-card'
+          title='Новое место'
+          buttonText='Создать'
+          onClose={closeAllPopups}
+          isOpen={isAddPlacePopupOpen}>
+          <Input
+              type="text"
+              placeholder="Название"
+              minLength="2"
+              maxLength="30"
+              name="name"
+              id="placeName-input"
+          />
+          <Input
+              type="url"
+              placeholder="Ссылка на картинку"
+              name="link"
+              id="placeUrl-input"
+          />
+      </PopupWithForm><PopupWithForm
+          name='edit-avatar'
+          title='Обновить аватар'
+          buttonText='Сохранить'
+          onClose = {closeAllPopups}
+          isOpen={isEditAvatarPopupOpen}>
+          <Input
+              type="url"
+              placeholder="Ссылка на аватар"
+              name="avatarLink"
+              id="avatarUrl-input"
+          />
+      </PopupWithForm><PopupWithForm
+          name='deletion-confirmation'
+          title='Вы уверены?'
+          buttonText='Да'>
+      </PopupWithForm><ImagePopup
+          card={selectedCard}
+          onClose={closeAllPopups}>
+      </ImagePopup>
+      </div>
     );
   }
 export default App;
