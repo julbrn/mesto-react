@@ -2,8 +2,8 @@ import React from 'react';
 
 function ImagePopup({card, onClose}) {
     return (
-        <div className={`popup popup_type_zoom-image ${card && "popup_opened"}`}>
-            <div className="popup__figure-container">
+        <div className={`popup popup_type_zoom-image ${card && "popup_opened"}`} onClick={onClose}>
+            <div className="popup__figure-container" onClick={(event) => {event.stopPropagation()}}>
                 <button onClick={onClose} type="button" aria-label="Close"
                  className="popup__close"></button>
                 <figure className="popup__figure">

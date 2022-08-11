@@ -2,8 +2,8 @@ import React from 'react';
 
 function PopupWithForm(props) {
     return (
-        <div className={`popup popup_type_${props.name} ${props.isOpen && 'popup_opened'}`}>
-            <div className={`popup__container popup__overlay popup__container_type_${props.name}`}>
+        <div className={`popup popup_type_${props.name} ${props.isOpen && 'popup_opened'}`} onClick={props.onClose}>
+            <div className={`popup__container popup__container_type_${props.name}`} onClick={(event) => {event.stopPropagation()}}>
                 <button onClick={props.onClose} type="button" aria-label="Close"
                  className="popup__close"/>
                 <form className="popup__form" name={`${props.name}-form`} noValidate>
