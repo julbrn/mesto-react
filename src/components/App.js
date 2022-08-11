@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../index.css';
 import Header from "./Header";
 import Main from "./Main";
@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import Input from "./Input";
+
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false)
@@ -16,24 +17,30 @@ function App() {
     setEditAvatarPopupOpen(true);
   }
 
-  function handleEscapeClose(event) {
-      if (event.key === 'Escape') {
-          closeAllPopups()
+  const isOpen = isEditProfilePopupOpen || isAddPlacePopupOpen || isEditAvatarPopupOpen || selectedCard;
+  useEffect(() => {
+      function handleEscapeClose(event) {
+          if (event.key === 'Escape') {
+              closeAllPopups()
+          }
       }
-  }
+      if (isOpen) {
+          document.addEventListener('keydown', handleEscapeClose);
+          return () => {
+              document.removeEventListener('keydown', handleEscapeClose)
+          }
+      }
+  }, [isOpen])
+
 
   function handleEditProfileClick() {setEditProfilePopupOpen(true);
-      document.addEventListener('keydown', handleEscapeClose)
   }
   function handleAddPlaceClick() {setAddPlacePopupOpen(true);
-      document.addEventListener('keydown', handleEscapeClose)
   }
   function closeAllPopups() {setEditProfilePopupOpen(false);setAddPlacePopupOpen(false);setEditAvatarPopupOpen(false);setSelectedCard(null);
-      document.removeEventListener('keydown', handleEscapeClose)
   }
   function handleCardClick(card) {
       setSelectedCard(card);
-      document.addEventListener('keydown', handleEscapeClose)
   }
   return (
       <div className="page"><Header/><Main
