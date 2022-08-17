@@ -46,3 +46,4 @@
 @import url(./blocks/card/__info-container/card__info-container.css);
 @import url(./blocks/card/__like-counter/card__like-counter.css);
 @import url(./blocks/card/__like-container/card__like-container.css);
+@import url(blocks/card/__delete-button/_hidden/card__delete-button_hidden.css);

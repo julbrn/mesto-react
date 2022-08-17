@@ -15,6 +15,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false)
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
   const [selectedCard, setSelectedCard] = React.useState(null)
+  const [cards, setCards] = React.useState([])
   const [currentUser, setCurrentUser] = React.useState({
         name: 'Preliminary User',
         about: 'Preliminary Info',
@@ -29,6 +30,7 @@ function App() {
         Promise.all([api.getUserInfo(), api.downloadInitialCards()])
             .then(([userData, cardsData]) => {
                 setCurrentUser(userData);
+                setCards(cardsData);
             })
             .catch((err) => {
                 console.log(err);
@@ -66,6 +68,7 @@ function App() {
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
           onCardClick={handleCardClick}
+          cards={cards}
       /><Footer/><PopupWithForm
           name='edit-profile'
           title='Редактировать профиль'
