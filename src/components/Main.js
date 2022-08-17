@@ -8,11 +8,11 @@ function Main(props) {
     const [userAvatar, setUserAvatar] = React.useState('')
     const [cards, setCards] = React.useState([]);
     useEffect(() => {
-        Promise.all([api.downloadUserInfo(), api.downloadInitialCards()])
-            .then(([me, card]) => {
-                setUserName(me.name)
-                setUserDescription(me.about);
-                setUserAvatar(me.avatar);
+        Promise.all([api.getUserInfo(), api.downloadInitialCards()])
+            .then(([userData, card]) => {
+                setUserName(userData.name)
+                setUserDescription(userData.about);
+                setUserAvatar(userData.avatar);
                 setCards(card);
             })
             .catch((err) => console.log(err))

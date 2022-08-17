@@ -63,7 +63,7 @@ class Api {
   }
 
   /**загружаем информацию о юзере с сервера */
-  downloadUserInfo() {
+  getUserInfo() {
     return fetch(`${this._serverUrl}/users/me`, {
       method: 'GET',
       headers: this._headers

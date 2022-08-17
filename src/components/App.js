@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../index.css';
 import Header from "./Header";
 import Main from "./Main";
@@ -6,6 +6,8 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import Input from "./Input";
+import api from '../utils/api.js';
+import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
 
 function App() {
@@ -13,11 +15,26 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false)
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
   const [selectedCard, setSelectedCard] = React.useState(null)
+  const [currentUser, setCurrentUser] = React.useState({
+        name: 'Preliminary User',
+        about: 'Preliminary Info',
+        avatar: 'Preliminary Avatar',
+    });
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
   }
 
   const isOpen = isEditProfilePopupOpen || isAddPlacePopupOpen || isEditAvatarPopupOpen || selectedCard;
+  useEffect(() => {
+        Promise.all([api.getUserInfo(), api.downloadInitialCards()])
+            .then(([userData, cardsData]) => {
+                setCurrentUser(userData);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
   useEffect(() => {
       function handleEscapeClose(event) {
           if (event.key === 'Escape') {
@@ -43,6 +60,7 @@ function App() {
       setSelectedCard(card);
   }
   return (
+      <CurrentUserContext.Provider value={currentUser}>
       <div className="page"><Header/><Main
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
@@ -111,7 +129,7 @@ function App() {
           onClose={closeAllPopups}>
       </ImagePopup>
       </div>
-    );
+      </CurrentUserContext.Provider>);
   }
 export default App;
 
