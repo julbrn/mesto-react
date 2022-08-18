@@ -1,5 +1,4 @@
 .card__delete-button {
-  visibility: visible;
   background-image: url('../../../images/elements/bin.svg');
   background-repeat: no-repeat;
   background-size: contain;

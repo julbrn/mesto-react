@@ -45,8 +45,8 @@ class Api {
   }
 
   /** передаем лайк на сервер*/
-  sendCardLike(data) {
-    return fetch(`${this._serverUrl}/cards/${data._id}/likes`, {
+  sendCardLike(id) {
+    return fetch(`${this._serverUrl}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers,
     })
@@ -54,8 +54,8 @@ class Api {
   }
 
   /** убираем поставленный лайк с сервера*/
-  deleteCardLike(data) {
-    return fetch(`${this._serverUrl}/cards/likes/${data._id}`, {
+  deleteCardLike(id) {
+    return fetch(`${this._serverUrl}/cards/likes/${id}`, {
       method: 'DELETE',
       headers: this._headers,
     })
@@ -77,8 +77,8 @@ class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: userData.profileName,
-        about: userData.profileInfo
+        name: userData.name,
+        about: userData.about
       })
     })
       .then(this._checkServerResponse);
@@ -90,10 +90,18 @@ class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.avatarLink
+        avatar: data.avatar
       })
     })
       .then(this._checkServerResponse);
+  }
+
+  changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked) {
+      return this.sendCardLike(cardId);
+    } else {
+      return this.deleteCardLike(cardId);
+    }
   }
 }
 

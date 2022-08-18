@@ -3,8 +3,9 @@ import api from '../utils/api.js';
 import Card from "./Card";
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
-function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards}) {
+function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, setCards, onCardLike, onCardDelete}) {
     const currentUser = useContext(CurrentUserContext);
+
     return (
         <main className="content">
             <section className="profile">
@@ -42,6 +43,8 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards}) {
                                     likes = {card.likes.length}
                                     onCardClick={onCardClick}
                                     key = {card._id}
+                                    onCardLike = {onCardLike}
+                                    onCardDelete = {onCardDelete}
                                 />
                             ))}
                 </ul>

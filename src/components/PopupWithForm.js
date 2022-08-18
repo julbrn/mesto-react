@@ -1,17 +1,17 @@
 import React from 'react';
 
-function PopupWithForm(props) {
+function PopupWithForm({name, isOpen, onClose, onSubmit, title, children, buttonText}) {
     return (
-        <div className={`popup popup_type_${props.name} ${props.isOpen && 'popup_opened'}`} onClick={props.onClose}>
-            <div className={`popup__container popup__container_type_${props.name}`} onClick={(event) => {event.stopPropagation()}}>
-                <button onClick={props.onClose} type="button" aria-label="Close"
+        <div className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`} onClick={onClose}>
+            <div className={`popup__container popup__container_type_${name}`} onClick={(event) => {event.stopPropagation()}}>
+                <button onClick={onClose} type="button" aria-label="Close"
                  className="popup__close"/>
-                <form className="popup__form" name={`${props.name}-form`} noValidate>
+                <form className="popup__form" name={`${name}-form`} noValidate onSubmit={onSubmit}>
                     <fieldset className="popup__fieldset">
-                        <legend className="popup__title">{props.title}</legend>
-                        {props.children}
+                        <legend className="popup__title">{title}</legend>
+                        {children}
                         <button type="submit"
-                                className="popup__submit-button popup__submit-button_active">{props.buttonText}
+                                className="popup__submit-button popup__submit-button_active">{buttonText}
                         </button>
                     </fieldset>
                 </form>

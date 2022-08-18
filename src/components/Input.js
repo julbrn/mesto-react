@@ -13,6 +13,8 @@ function Input(props) {
             minLength={props.minLength}
             maxLength={props.maxLength}
             required
+            onChange={props.onChange}
+            ref={props.avatarRef}
         />
         <span className="popup__input-error"/>
             </>
