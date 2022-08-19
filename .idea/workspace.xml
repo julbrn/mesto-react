@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="988df72a-0428-485c-aa2c-c2ffc893523f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddPlacePopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddPlacePopup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EditAvatarPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditAvatarPopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EditProfilePopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditProfilePopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PopupWithForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PopupWithForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +65,7 @@
       <workItem from="1660482956185" duration="3669000" />
       <workItem from="1660589907817" duration="1253000" />
       <workItem from="1660675117031" duration="72000" />
-      <workItem from="1660720581030" duration="38770000" />
+      <workItem from="1660720581030" duration="44224000" />
     </task>
     <servers />
   </component>
