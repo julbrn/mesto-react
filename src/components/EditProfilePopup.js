@@ -5,8 +5,8 @@ import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
 function EditProfilePopup(props) {
     const currentUser = useContext(CurrentUserContext);
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+    const [name, setName] = useState(currentUser.name);
+    const [description, setDescription] = useState(currentUser.about);
 
     useEffect(() => {
         setName(currentUser.name);
@@ -48,6 +48,7 @@ function EditProfilePopup(props) {
                 name="name"
                 id="profileName-input"
                 onChange={handleNameChange}
+                value={name}
             />
             <Input
                 type="text"
@@ -55,6 +56,7 @@ function EditProfilePopup(props) {
                 minLength="2"
                 maxLength="200"
                 name="about"
+                value={description}
                 id="profileInfo-input"
                 onChange={handleDescriptionChange}
             />

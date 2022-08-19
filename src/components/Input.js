@@ -15,6 +15,7 @@ function Input(props) {
             required
             onChange={props.onChange}
             ref={props.avatarRef}
+            value={props.value}
         />
         <span className="popup__input-error"/>
             </>
