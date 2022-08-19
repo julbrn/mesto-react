@@ -102,6 +102,17 @@ function App() {
             })
     }
 
+    function handleAddPlace(data) {
+        api.uploadCard(data)
+            .then((newCard) => {
+                setCards([newCard, ...cards]);
+                setAddPlacePopupOpen(false);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
   return (
       <CurrentUserContext.Provider value={currentUser}>
       <div className="page"><Header/><Main
@@ -116,7 +127,7 @@ function App() {
       /><Footer/>
           <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
           <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}  onUpdateAvatar={handleUpdateAvatar} />
-          <AddPlacePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}/>
+          <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlace}/>
           <PopupWithForm
           name='deletion-confirmation'
           title='Вы уверены?'
