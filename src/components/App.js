@@ -23,6 +23,7 @@ function App() {
         about: '',
         avatar: '',
     });
+  const [isLoading, setIsLoading] = React.useState(false);
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
   }
@@ -81,6 +82,7 @@ function App() {
   }
 
   function handleUpdateUser(inputdata) {
+      setIsLoading(true)
       api.uploadUserInfo(inputdata)
           .then(user => {
               setCurrentUser(user);
@@ -89,9 +91,13 @@ function App() {
           .catch((err) => {
               console.log(err);
           })
+          .finally(()=> {
+              setIsLoading(false)//
+          })
   }
 
     function handleUpdateAvatar(data) {
+        setIsLoading(true)
         api.editAvatar(data)
             .then(res => {
                 setCurrentUser(res);
@@ -100,9 +106,13 @@ function App() {
             .catch((err) => {
                 console.log(err);
             })
+            .finally(()=> {
+                setIsLoading(false)//
+            })
     }
 
     function handleAddPlace(data) {
+        setIsLoading(true)
         api.uploadCard(data)
             .then((newCard) => {
                 setCards([newCard, ...cards]);
@@ -110,6 +120,9 @@ function App() {
             })
             .catch((err) => {
                 console.log(err);
+            })
+            .finally(()=> {
+                setIsLoading(false)//
             })
     }
 
@@ -125,9 +138,9 @@ function App() {
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
       /><Footer/>
-          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
-          <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}  onUpdateAvatar={handleUpdateAvatar} />
-          <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlace}/>
+          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} isLoading={isLoading} loadingText="Сохранение..."/>
+          <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}  onUpdateAvatar={handleUpdateAvatar} isLoading={isLoading} loadingText="Сохранение..."/>
+          <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlace} isLoading={isLoading} loadingText="Добавление..."/>
           <PopupWithForm
           name='deletion-confirmation'
           title='Вы уверены?'

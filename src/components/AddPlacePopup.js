@@ -1,9 +1,8 @@
 import {useState, useEffect} from 'react';
 import Input from "./Input";
 import PopupWithForm from "./PopupWithForm";
-import React from "react";
 
-function AddPlacePopup({onClose, isOpen, onAddPlace}) {
+function AddPlacePopup({onClose, isOpen, onAddPlace, isLoading, loadingText}) {
     const [title, setTitle] = useState("");
     const [link, setLink] = useState("");
     function handleCardTitle(event) {
@@ -33,7 +32,9 @@ function AddPlacePopup({onClose, isOpen, onAddPlace}) {
         buttonText='Создать'
         onClose={onClose}
         isOpen={isOpen}
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+        isLoading={isLoading}
+        loadingText={loadingText}>
         <Input
             type="text"
             placeholder="Название"

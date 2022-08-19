@@ -3,7 +3,7 @@ import Input from "./Input";
 import PopupWithForm from "./PopupWithForm";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
-function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
+function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, isLoading, loadingText}) {
     const currentUser = useContext(CurrentUserContext);
     const avatarRef = useRef();
     useEffect(() => {
@@ -26,7 +26,9 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
     buttonText='Сохранить'
     onClose = {onClose}
     isOpen={isOpen}
-    onSubmit={handleSubmit}>
+    onSubmit={handleSubmit}
+    isLoading={isLoading}
+    loadingText={loadingText}>
     <Input
         type="url"
         placeholder="Ссылка на аватар"

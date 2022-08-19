@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import {useContext, useState, useEffect} from 'react';
 import Input from "./Input";
 import PopupWithForm from "./PopupWithForm";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
@@ -37,7 +37,9 @@ function EditProfilePopup(props) {
             buttonText='Сохранить'
             onClose={props.onClose}
             onSubmit={handleSubmit}
-            isOpen={props.isOpen}>
+            isOpen={props.isOpen}
+            isLoading={props.isLoading}
+            loadingText={props.loadingText}>
             <Input
                 type="text"
                 placeholder="Имя"
