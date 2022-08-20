@@ -14,19 +14,19 @@ import AddPlacePopup from "./AddPlacePopup";
 import DeleteConfirmationPopup from "./DeleteConfirmationPopup";
 
 function App() {
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false)
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false)
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
-  const [isConfirmPopupOpen, setConfirmPopupOpen] = React.useState(false)
-  const [selectedCard, setSelectedCard] = React.useState(null)
-  const [cards, setCards] = React.useState([])
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false)
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false)
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false)
+  const [isConfirmPopupOpen, setConfirmPopupOpen] = useState(false)
+  const [selectedCard, setSelectedCard] = useState(null)
+  const [cards, setCards] = useState([])
   const [card, setCard] = useState({})
-  const [currentUser, setCurrentUser] = React.useState({
+  const [currentUser, setCurrentUser] = useState({
         name: '',
         about: '',
         avatar: '',
     });
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
   }
@@ -34,9 +34,13 @@ function App() {
         // Снова проверяем, есть ли уже лайк на этой карточке
         const isLiked = card.likes.some(i => i._id === currentUser._id);
         // Отправляем запрос в API и получаем обновлённые данные карточки
-        api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+        api.changeLikeCardStatus(card._id, !isLiked)
+            .then((newCard) => {
             setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-        });
+        })
+            .catch((err) => {
+                console.log(`${err}`);
+            });
     }
     function handleCardDelete(card) {
         api.deleteCardfromServer(card._id)

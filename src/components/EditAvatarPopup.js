@@ -8,11 +8,8 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, isLoading, loadingTex
     const avatarRef = useRef();
     useEffect(() => {
         avatarRef.current.value = '';
-    }, [currentUser]);
+    }, [isOpen]);
 
-    useEffect(() => {
-        avatarRef.current.value = '';
-    }, [isOpen])
     function handleSubmit(e) {
         e.preventDefault();
 

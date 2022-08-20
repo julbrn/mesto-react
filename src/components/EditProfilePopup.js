@@ -48,7 +48,7 @@ function EditProfilePopup(props) {
                 name="name"
                 id="profileName-input"
                 onChange={handleNameChange}
-                value={name}
+                value={name || ''}
             />
             <Input
                 type="text"
@@ -56,7 +56,7 @@ function EditProfilePopup(props) {
                 minLength="2"
                 maxLength="200"
                 name="about"
-                value={description}
+                value={description || ''}
                 id="profileInfo-input"
                 onChange={handleDescriptionChange}
             />

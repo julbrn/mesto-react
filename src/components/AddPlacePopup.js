@@ -43,6 +43,7 @@ function AddPlacePopup({onClose, isOpen, onAddPlace, isLoading, loadingText}) {
             name="name"
             id="placeName-input"
             onChange={handleCardTitle}
+            value={title}
         />
         <Input
             type="url"
@@ -50,6 +51,7 @@ function AddPlacePopup({onClose, isOpen, onAddPlace, isLoading, loadingText}) {
             name="link"
             id="placeUrl-input"
             onChange={handleCardLink}
+            value={link}
         />
     </PopupWithForm>)
 }
